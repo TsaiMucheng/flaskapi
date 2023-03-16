@@ -1,0 +1,32 @@
+<html>  
+<head>  
+<script type = "text/javascript">  
+function show(route = 'api1') {
+    var url = 'http://127.0.0.1:4979/' + route
+    const USER = 'test'
+    const PASSWORD = 'test'
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    // xhr.setRequestHeader('Authorization','Basic ' + btoa(USER + ':' + PASSWORD))
+    xhr.onload = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                console.log('success')
+                console.log(data)
+            } else {
+                console.log('response failed')
+            }
+        }
+    };
+    xhr.send();
+}  
+</script>  
+</head>  
+<body>  
+<p>Click the following button to see console with CORS</p>  
+<input type = "button" onclick = "show(route='api1')" value = "api1">  
+<p>Click the following button to see console with data</p>  
+<input type = "button" onclick = "show(route='api2')" value = "api2">  
+</body>  
+</html>
